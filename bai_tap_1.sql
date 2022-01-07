@@ -108,3 +108,15 @@ go
 Alter table Product
 ADD  Ngay datetime
 go
+
+
+--8 
+CREATE INDEX IX_Customer ON donhang(tenkhach);
+CREATE INDEX IX_Customer ON mathang(tenhang);
+
+create view view_khachhang As
+select donhang.tenkhach, donhang.diachi, donhang.dienthoai, from donhang
+
+create view view sanpham as
+select mathang.tenhang, mathang.gia from mathang
+
