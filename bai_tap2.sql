@@ -7,6 +7,7 @@ go
 
 -- bảng hãng
 Create Table Hang(
+
 	MaHang int primary key,
 	TenHang Varchar(50),
 	DiaChi varchar(50),
@@ -120,3 +121,21 @@ go
 Alter Table Hang
 add Check(SDT Like '0%')
 go
+
+--8
+create index Ten_H on Hang(TenHang);
+go
+create index Mo_Ta on LoaiSP(tensp);
+go
+--View_SanPham: với các cột Mã sản phẩm, Tên sản phẩm, Giá bán
+create view View_SanPham AS
+select MaSP,TenLoaiSP,Gia
+from LoaiSP
+select*from View_SanPham 
+--View_SanPham_Hang: với các cột Mã SP, Tên sản phẩm, Hãng sản xuất
+create view View_SanPham_Hang AS
+select sp.MaSP,sp.TenSP,hang.TenH
+from Hang
+join SP
+on sp.MaH=Hang.MaH
+select*from View_SanPham_Hang
